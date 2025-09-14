@@ -497,7 +497,6 @@ section,
 }
 
 @media (max-width: 1199px) {
-
   section,
   .section {
     scroll-margin-top: 58px;
@@ -542,7 +541,7 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Hero Section
+# Hero Section - Enhanced Mobile Responsiveness
 --------------------------------------------------------------*/
 .hero {
   width: 100%;
@@ -582,6 +581,7 @@ section,
   font-size: 56px;
   font-weight: 700;
   font-family: var(--nav-font);
+  text-align: center;
 }
 
 .hero h2 span {
@@ -592,6 +592,48 @@ section,
   margin: 10px 0 0 0;
   font-size: 24px;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
+  text-align: center;
+}
+
+/*--------------------------------------------------------------
+# Slider Container - Mobile Optimized
+--------------------------------------------------------------*/
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slide-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 3;
+}
+
+/*--------------------------------------------------------------
+# Icon Boxes - Mobile Responsive
+--------------------------------------------------------------*/
+.icon-boxes-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  padding: 20px 0;
+  background: linear-gradient(transparent, rgba(4, 28, 50, 0.8));
 }
 
 .hero .icon-box {
@@ -604,12 +646,17 @@ section,
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .hero .icon-box i {
   font-size: 32px;
   line-height: 1;
   color: var(--accent-color);
+  margin-bottom: 10px;
 }
 
 .hero .icon-box h3 {
@@ -624,28 +671,564 @@ section,
 .hero .icon-box h3 a {
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   transition: ease-in-out 0.3s;
+  text-decoration: none;
 }
 
 .hero .icon-box:hover {
   border-color: var(--accent-color);
+  transform: translateY(-5px);
 }
 
 .hero .icon-box:hover h3 a {
   color: var(--accent-color);
 }
 
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 32px;
-  }
+/*--------------------------------------------------------------
+# Navigation Buttons - Mobile Optimized
+--------------------------------------------------------------*/
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 5;
+  backdrop-filter: blur(10px);
+}
 
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-button.prev {
+  left: 20px;
+}
+
+.nav-button.next {
+  right: 20px;
+}
+
+/*--------------------------------------------------------------
+# Mobile Responsive Breakpoints
+--------------------------------------------------------------*/
+
+/* Large tablets and small desktops */
+@media (max-width: 1199px) {
+  .hero h2 {
+    font-size: 48px;
+  }
+  
+  .hero .icon-box {
+    padding: 25px 15px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 991px) {
+  .hero {
+    padding: 100px 0 60px 0;
+  }
+  
+  .hero h2 {
+    font-size: 42px;
+  }
+  
   .hero p {
+    font-size: 20px;
+  }
+  
+  .hero .icon-box {
+    padding: 20px 15px;
+    margin-bottom: 15px;
+  }
+  
+  .hero .icon-box i {
+    font-size: 28px;
+  }
+  
+  .hero .icon-box h3 {
     font-size: 18px;
   }
 }
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 0 40px 0;
+    min-height: 100vh;
+  }
+  
+  .hero h2 {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    padding: 0 15px;
+  }
+
+  .hero p {
+    font-size: 16px;
+    padding: 0 15px;
+  }
+  
+  .slide-content {
+    padding: 15px;
+    flex-direction: column;
+  }
+  
+  .icon-boxes-container {
+    position: relative;
+    bottom: auto;
+    margin-top: 40px;
+    background: transparent;
+    padding: 0 15px;
+  }
+  
+  .hero .icon-box {
+    padding: 20px 15px;
+    margin-bottom: 15px;
+    min-height: 120px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  .hero .icon-box i {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .hero .icon-box h3 {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  
+  .nav-button {
+    padding: 12px;
+    display: none; /* Hide navigation buttons on mobile for cleaner look */
+  }
+  
+  /* Show navigation buttons on mobile if needed */
+  .nav-button.mobile-visible {
+    display: block;
+    top: 30%;
+  }
+  
+  .nav-button.prev {
+    left: 10px;
+  }
+  
+  .nav-button.next {
+    right: 10px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+  .hero {
+    padding: 60px 0 20px 0;
+  }
+  
+  .hero h2 {
+    font-size: 24px;
+    padding: 0 10px;
+  }
+  
+  .hero p {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  
+  .icon-boxes-container {
+    padding: 0 10px;
+  }
+  
+  .hero .icon-box {
+    padding: 15px 10px;
+    min-height: 100px;
+  }
+  
+  .hero .icon-box i {
+    font-size: 20px;
+  }
+  
+  .hero .icon-box h3 {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  
+  /* Stack icon boxes in single column on very small screens */
+  .row.gy-4 .col-xl-2,
+  .row.gy-4 .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .hero h2 {
+    font-size: 20px;
+    word-spacing: 2px;
+  }
+  
+  .hero .icon-box {
+    padding: 12px 8px;
+    min-height: 90px;
+  }
+  
+  .hero .icon-box h3 {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
+
 /*--------------------------------------------------------------
-/* Call To Action Section
+# Utility Classes for Mobile
 --------------------------------------------------------------*/
+.mobile-hidden {
+  display: block;
+}
+
+.mobile-visible {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
+  
+  .mobile-visible {
+    display: block;
+  }
+}
+
+/*--------------------------------------------------------------
+# Header/Navigation Mobile Fixes
+--------------------------------------------------------------*/
+.header {
+  background: rgba(4, 28, 50, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 997;
+}
+
+.header .container-fluid {
+  padding: 0 15px;
+}
+
+/* Logo styling */
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--accent-color, #ffc107);
+}
+
+/* Navigation menu */
+.navmenu ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 30px;
+}
+
+.navmenu ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.navmenu ul li a:hover,
+.navmenu ul li a.active {
+  color: var(--accent-color, #ffc107);
+}
+
+/* Mobile nav toggle */
+.mobile-nav-toggle {
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  display: none;
+  line-height: 0;
+  transition: 0.5s;
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-getstarted {
+  background: transparent;
+  color: white;
+  border: 2px solid var(--accent-color, #ffc107);
+  padding: 8px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.btn-getstarted:hover {
+  background: var(--accent-color, #ffc107);
+  color: var(--dark-color, #041C32);
+}
+
+.btn-getstarted.login-icon {
+  padding: 8px 12px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Welcome text animation */
+.text-animation-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(4, 28, 50, 0.9);
+  padding: 10px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.animated-text {
+  color: var(--accent-color, #ffc107);
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/*--------------------------------------------------------------
+# Mobile Responsive Header
+--------------------------------------------------------------*/
+@media (max-width: 1199px) {
+  .navmenu ul {
+    gap: 20px;
+  }
+  
+  .navmenu ul li a {
+    font-size: 14px;
+  }
+  
+  .btn-getstarted {
+    padding: 6px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 991px) {
+  .header .container-fluid {
+    padding: 0 10px;
+  }
+  
+  .navmenu {
+    display: none;
+  }
+  
+  .mobile-nav-toggle {
+    display: block;
+  }
+  
+  .button-group {
+    gap: 8px;
+  }
+  
+  .btn-getstarted {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 0;
+  }
+  
+  .header .container-fluid {
+    padding: 0 8px;
+    flex-wrap: nowrap;
+  }
+  
+  .logo {
+    font-size: 20px;
+    flex: 1;
+  }
+  
+  .button-group {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  
+  .btn-getstarted {
+    padding: 5px 12px;
+    font-size: 11px;
+    min-width: 65px;
+  }
+  
+  .btn-getstarted.login-icon {
+    padding: 5px 8px;
+    font-size: 14px;
+    min-width: auto;
+  }
+  
+  .text-animation-container {
+    padding: 8px 0;
+  }
+  
+  .animated-text {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  
+  .mobile-nav-toggle {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    padding: 8px 0;
+  }
+  
+  .header .container-fluid {
+    padding: 0 6px;
+  }
+  
+  .logo {
+    font-size: 18px;
+  }
+  
+  .button-group {
+    gap: 4px;
+  }
+  
+  .btn-getstarted {
+    padding: 4px 10px;
+    font-size: 10px;
+    min-width: 55px;
+  }
+  
+  .btn-getstarted.login-icon {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+  
+  .animated-text {
+    font-size: 12px;
+  }
+  
+  .mobile-nav-toggle {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header .container-fluid {
+    padding: 0 4px;
+  }
+  
+  .logo {
+    font-size: 16px;
+  }
+  
+  .btn-getstarted {
+    padding: 3px 8px;
+    font-size: 9px;
+    min-width: 50px;
+  }
+  
+  .btn-getstarted.login-icon {
+    padding: 3px 5px;
+    font-size: 11px;
+  }
+  
+  .animated-text {
+    font-size: 11px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Mobile Navigation Menu (when expanded)
+--------------------------------------------------------------*/
+@media (max-width: 991px) {
+  .navmenu.mobile-nav-active {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(4, 28, 50, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 193, 7, 0.3);
+    z-index: 99;
+  }
+  
+  .navmenu.mobile-nav-active ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 20px;
+  }
+  
+  .navmenu.mobile-nav-active ul li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .navmenu.mobile-nav-active ul li a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .navmenu.mobile-nav-active ul li:last-child a {
+    border-bottom: none;
+  }
+}
+
+/*--------------------------------------------------------------
+# Container Responsive Adjustments
+--------------------------------------------------------------*/
+@media (max-width: 768px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 100%;
+  }
+  
+  .row {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  
+  .row > * {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
 /* Call To Action Section
 --------------------------------------------------------------*/
 .call-to-action {
