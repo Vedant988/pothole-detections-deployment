@@ -40,8 +40,8 @@ project = rf.workspace().project("pothole-detection-i00zy")
 model = project.version(2).model
 
 # --------------------- MongoDB Connections --------------------------------
-
-client = MongoClient('mongodb+srv://anuj:anuj123@cluster0.qhhfsfp.mongodb.net/porthole_app?retryWrites=true&w=majority&appName=Cluster0')
+MONGO_URI = os.environ.get("MONGO_URI")
+client = MongoClient(MONGO_URI)
 db = client['pothole_app']
 users_collection = db['users']
 resolved_complaints_collection = db['resolved_complaints']
