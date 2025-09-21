@@ -137,7 +137,7 @@
   }
   
   /* Enhanced Button Styles */
-  .header .btn-getstarted,
+  /* .header .btn-getstarted,
   .header .btn-getstarted:focus {
     color: var(--contrast-color);
     font-size: 18px;
@@ -181,7 +181,6 @@
     text-shadow: none;
   }
   
-  /* Button Group Animation */
   .button-group {
     display: flex;
     gap: 10px;
@@ -228,7 +227,7 @@
   
   .button-group a.btn-getstarted:hover:after {
     opacity: 1;
-  }
+  } */
   
   /* Enhanced Navigation Menu */
   @media (min-width: 1200px) {
@@ -481,151 +480,158 @@
   }
   
   /* Mobile Nav Styles with Enhanced Animations */
-  @media (max-width: 1199px) {
-    .mobile-nav-toggle {
-      
-      font-size: 32px;
-      line-height: 0;
-      margin-right: 10px;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    }
-    
-    .mobile-nav-toggle:hover {
-      transform: scale(1.1);
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    }
   
-    .navmenu ul {
-      display: none;
-      list-style: none;
-      position: absolute;
-      inset: 70px 20px 20px 20px;
-      padding: 20px 0;
-      margin: 0;
-      border-radius: 10px;
-      background-color: rgba(0, 0, 0, 0.95);
-      overflow-y: auto;
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      z-index: 9998;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(241, 196, 15, 0.1);
-      transform: translateY(-20px);
-      opacity: 0;
-    }
-    
-    .mobile-nav-active .navmenu ul {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  
-    .navmenu a,
-    .navmenu a:focus {
-      color: #ffffff;
-      padding: 15px 25px;
-      font-size: 18px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      white-space: nowrap;
-      transition: all 0.4s ease;
-      border-radius: 8px;
-      margin: 0 10px 5px;
-      letter-spacing: 0.5px;
-    }
-  
-    .navmenu a i,
-    .navmenu a:focus i {
-      font-size: 14px;
-      line-height: 0;
-      margin-left: 8px;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.4s ease;
-      background-color: rgba(241, 196, 15, 0.2);
-    }
-  
-    .navmenu a:hover,
-    .navmenu .active,
-    .navmenu .active:focus {
-      background-color: rgba(241, 196, 15, 0.1);
-      color: #f1c40f;
-      transform: translateX(8px);
-    }
-    
-    .navmenu a:hover i,
-    .navmenu .active i {
-      background: rgba(241, 196, 15, 0.3);
-      transform: rotate(180deg);
-    }
-  
-    .mobile-nav-active {
-      overflow: hidden;
-    }
-  
-    .mobile-nav-active .mobile-nav-toggle {
-      color: #fff;
-      position: fixed;
-      font-size: 38px;
-      top: 15px;
-      right: 15px;
-      margin-right: 0;
-      z-index: 9999;
-      transform: rotate(180deg);
-    }
-  
-    .mobile-nav-active .navmenu {
-      position: fixed;
-      overflow: hidden;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(10px);
-      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-  
-    /* Mobile Menu Animation */
-    @keyframes mobileMenuReveal {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .mobile-nav-active .navmenu ul li {
-      opacity: 0;
-      animation: mobileMenuReveal 0.5s ease forwards;
-    }
-    
-    .mobile-nav-active .navmenu ul li:nth-child(1) {
-      animation-delay: 0.2s;
-    }
-    
-    .mobile-nav-active .navmenu ul li:nth-child(2) {
-      animation-delay: 0.3s;
-    }
-    
-    .mobile-nav-active .navmenu ul li:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-    
-    .mobile-nav-active .navmenu ul li:nth-child(4) {
-      animation-delay: 0.5s;
-    }
-  
-    /* Adjust padding for mobile */
-    body {
-      padding-top: 70px; /* Smaller padding for mobile */
-    }
+/*--------------------------------------------------------------
+# Mobile Navigation & Header Responsiveness (Final Version)
+--------------------------------------------------------------*/
+@media (max-width: 1199px) {
+
+  /* Ensure header container uses flex for spacing */
+  .header .container-fluid {
+    display: flex;
+    justify-content: space-between; /* Distribute items with space */
+    align-items: center;
+    padding: 10px 15px; /* Adjust header padding on mobile */
   }
+
+  /* Logo Adjustments for Mobile */
+  .header .logo {
+    font-size: 24px; /* Smaller logo font size */
+    margin-right: 10px; /* Adjust margin */
+  }
+
+  .header .logo span {
+    font-size: 24px; /* Keep span size consistent with main logo */
+  }
+
+  /* Hide the desktop nav */
+  .navmenu {
+    display: none;
+  }
+
+  /* Mobile Nav Toggle Button Styling */
+  .mobile-nav-toggle {
+  /* --- Your existing styles --- */
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 0;
+  transition: 0.5s;
+  position: relative;
+  z-index: 9999;
+  margin-left: auto;
+  order: 2;
+
+  /* --- ADD THESE LINES TO FIX IT --- */
+  background: none;      /* Remove default gray background */
+  border: none;        /* Remove default border */
+  padding: 0;          /* Remove default padding */
+  appearance: none;    /* Recommended for resetting button styles */
+}
+
+  /* --- Button Group (Register/Login/Profile) Adjustments --- */
+  .header-buttons {
+    order: 3; /* Ensure buttons are last in the flex order */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Smaller gap between buttons */
+  }
+
+  .header-buttons .button-group {
+    display: flex;
+    gap: 5px; /* Smaller gap for logged-in icons too */
+  }
+
+
+
+  .header-buttons .login-icon {
+    font-size: 18px; /* Adjust icon size */
+    width: 38px; /* Make icon button square */
+    height: 38px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  /* Mobile nav menu container */
+  .navmenu-mobile {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 100%;
+    height: 100%; /* Cover full viewport height */
+    background: rgba(15, 15, 15, 0.95); /* Slightly darker overlay */
+    backdrop-filter: blur(8px); /* More blur for a frosted effect */
+    padding: 100px 20px 20px 20px;
+    transition: right 0.4s ease-in-out; /* Smooth slide transition */
+    z-index: 9998;
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navmenu-mobile ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure ul takes full width of its container */
+    max-width: 300px; /* Optional: limit max width for better readability */
+  }
+
+  .navmenu-mobile li {
+    padding: 10px 0; /* Slightly reduce vertical padding */
+  }
+
+  .navmenu-mobile a {
+    color: #fff;
+    font-size: 20px; /* Slightly smaller font for menu items */
+    text-decoration: none;
+    display: block; /* Make links block level for clickable area */
+    padding: 10px 15px; /* Padding inside link for easier tapping */
+    border-radius: 5px;
+    transition: 0.3s;
+    text-align: center; /* Center menu text */
+  }
+
+  .navmenu-mobile a:hover,
+  .navmenu-mobile .active {
+    color: #ffc107; /* Your accent color */
+    background-color: rgba(255, 193, 7, 0.1); /* Subtle hover background */
+  }
+
+  /* When mobile nav is active */
+  .mobile-nav-active .navmenu-mobile {
+    right: 0; /* Slide in from the right */
+  }
+
+  .mobile-nav-active .mobile-nav-toggle {
+    color: #fff;
+    position: fixed; /* Keep the toggle fixed when menu is open */
+    top: 25px;
+    right: 20px;
+    font-size: 32px; /* Slightly larger 'X' icon */
+  }
+}
+
+/* --- Welcome Message Animation for Mobile --- */
+.text-animation-container {
+  /* No change for positioning here, as it's handled by overall header structure */
+  bottom: -40px; /* Adjust position relative to header bottom */
+}
+
+.animated-text {
+  font-size: 20px; /* Smaller font for welcome message on mobile */
+  padding: 3px 10px;
+}
+
+
+
+  
+
+
   .text-animation-container {
     position: absolute;
     bottom: -50px;
@@ -660,5 +666,61 @@
 
 /* Adjust the header padding to make room for the animation */
 .header {
-    padding-bottom: 45px;
+    padding-bottom: 10px;
+}
+
+
+
+/* =======================================================
+   Final Header Button Styles (Desktop & Mobile)
+======================================================== */
+
+/* --- 1. Base Styles (for Desktop) --- */
+.header .btn-getstarted {
+  color: white;
+  background-color: transparent;
+  font-size: 16px; /* A good default size */
+  font-weight: 600;
+  padding: 10px 22px; /* A good default padding */
+  margin: 0;
+  border-radius: 6px;
+  border: 2px solid #f1c40f; /* Your accent color */
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevents text from wrapping */
+  text-decoration: none;
+}
+
+.header .btn-getstarted:hover {
+  background-color: #f1c40f;
+  color: black;
+}
+
+.header-buttons .button-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between buttons on desktop */
+}
+
+
+/* --- 2. General Mobile Styles --- */
+@media (max-width: 1199px) {
+  .header .btn-getstarted {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+  .header-buttons .button-group {
+    gap: 8px;
+  }
+}
+
+
+/* --- 3. Small Mobile Styles --- */
+@media (max-width: 480px) {
+  .header .btn-getstarted {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  .header-buttons .button-group {
+    gap: 5px;
+  }
 }
