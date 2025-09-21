@@ -74,52 +74,38 @@
        
     {% endif %}
   </div>
-    {% if user %}
-            <div class="text-animation-container">
-              <div><p class="animated-text line-1 anim-typewriter" ">
-                Welcome, <span style="font-size: larger;">{{ first_name }}</span></p>
-              </div>
-            </div>
-    {% endif %}
+    
   </header>
   <main class="main">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
       <div class="slider-container">
-        <div class="slide active opacity-100 z-10" 
-             style="background-image: url('https://static.theprint.in/wp-content/uploads/2018/12/Potholes.jpg');">
-          <div class="slide-content">
-            {% if user %}
-            <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100" 
-                style="font-size: 32px; color: #ffc107;">
-              <!-- <div>
-              
-              </div> -->
-            </div>
-            {% endif %}
-            <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100" style="font-family: 'Special Gothic Expanded One '; font-size: 32px;">
-                <h2><span>See it, &nbsp; Snap it, &nbsp; Solve it&nbsp;<span></span></h2>  
-            </div>
-          </div>
-        </div>
       </div>
       
         <!-- Slide 2 -->
-        <div class="slide opacity-0 z-0" 
+        <div class="slide" 
      style="background-image: url('https://images.deccanherald.com/deccanherald%2Fimport%2Fsites%2Fdh%2Ffiles%2Farticleimages%2F2022%2F08%2F22%2Fpothole-1138292-1661174905.jpg?auto=format%2Ccompress&fmt=webp&fit=max&format=webp&q=70&w=400&dpr=2');">
-  <div class="slide-content">
-    <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
-      <h2><span>Make Every Bump Count — Report Potholes and Protect Your Community.</span></h2>
+  <div class="slide-content flex items-center justify-center h-full bg-black/40 px-4">
+    <div class="row justify-content-center text-center font-bold 
+           text-2xl sm:text-3xl md:text-5xl lg:text-6xl 
+           leading-tight tracking-wide" 
+           data-aos="fade-up" data-aos-delay="100">
+      <h2>
+        <span>See it,&nbsp;</span>
+        <span>Snap it,&nbsp;</span>
+        <span class="break">Solve it</span>
+      </h2>
     </div>
   </div>
 </div>
+
 
       
         <!-- Icon Boxes Container - Positioned at bottom of screen -->
 <div class="icon-boxes-container">
   <div class="container">
-    <div class="row gy-4 justify-content-center" data-aos="fade-up" data-aos-delay="200">
+    <div class="row gy-4 justify-content-center " data-aos="fade-up" data-aos-delay="200">
 
       <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="300">
         <a href="{{ url_for('file_complaint') }}">
@@ -162,49 +148,10 @@
 </div>
 
       
-        <!-- Navigation buttons -->
-        <button class="nav-button prev" onclick="prevSlide()">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="24" height="24">
-            <path d="M28.5 32.4c.1 0 .3-.1.4-.2.2-.2.2-.5 0-.7L22.2 25l6.7-6.5c.2-.2.2-.5 0-.7-.2-.2-.5-.2-.7 0L21 24.7c-.1.1-.2.2-.2.4 0 .1.1.3.2.4l7.1 6.8c.1 0 .3.1.4.1z" fill="#fff"/>
-          </svg>
-        </button>
-      
-        <button class="nav-button next" onclick="nextSlide()">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="24" height="24" style="transform: rotate(180deg)">
-            <path d="M28.5 32.4c.1 0 .3-.1.4-.2.2-.2.2-.5 0-.7L22.2 25l6.7-6.5c.2-.2.2-.5 0-.7-.2-.2-.5-.2-.7 0L21 24.7c-.1.1-.2.2-.2.4 0 .1.1.3.2.4l7.1 6.8c.1 0 .3.1.4.1z" fill="#fff"/>
-          </svg>
-        </button>
-      </div>
+        
     </section><!-- /Hero Section -->
 
   <!-- Rest of your website content would go here -->
-
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    let currentSlide = 0;
-    
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('opacity-100', i === index);
-        slide.classList.toggle('opacity-0', i !== index);
-        slide.classList.toggle('z-10', i === index);
-        slide.classList.toggle('z-0', i !== index);
-      });
-    }
-    
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
-    
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    }
-    
-    // Auto-slide every 7 seconds
-    setInterval(nextSlide, 7000);
-  </script>
   <br><br><br>
  <!-- _____________________________________________________________________________________________________________________________ -->
 <!-- MISSION section -->
