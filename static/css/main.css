@@ -4,20 +4,15 @@
   --default-font: "Poppins", sans-serif;
 --heading-font: "Poppins", sans-serif;
 --nav-font: "Poppins", sans-serif;
-}
 
 /*Global Colors*/
-:root { 
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #151515; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #ECB365; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #312f2f; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
-}
-
 /* Nav Menu Colors */
-:root {
   --nav-color: rgba(255, 255, 255, 0.905); /* Keeping this semi-transparent white for readability */
   --nav-hover-color: var(--gold); /* Changed to your gold color */
   --nav-mobile-background-color: var(--white); /* Same as #ffffff */
@@ -164,7 +159,7 @@ h6 {
     
     .icon-boxes-container {
       position: absolute;
-      bottom: 15vh; /* Position from bottom of screen */
+      bottom: 5vh; /* Position from bottom of screen */
       left: 0;
       right: 0;
       z-index: 20;
@@ -178,6 +173,7 @@ h6 {
       
       .slide-content {
         margin-bottom: 100px;
+        
       }
       
       .icon-box {
@@ -577,7 +573,7 @@ section,
 }
 
 .hero h2 {
-  margin: 0;
+  margin: 0 0 0 300px;
   font-size: 56px;
   font-weight: 700;
   font-family: var(--nav-font);
@@ -721,6 +717,7 @@ section,
 @media (max-width: 1199px) {
   .hero h2 {
     font-size: 48px;
+    margin: 0 0 0 300px;
   }
   
   .hero .icon-box {
@@ -736,6 +733,7 @@ section,
   
   .hero h2 {
     font-size: 42px;
+    margin: 0 0 10px -10px;
   }
   
   .hero p {
@@ -774,10 +772,30 @@ section,
     font-size: 16px;
     padding: 0 15px;
   }
-  
+  @media (max-width: 768px) {
   .slide-content {
-    padding: 15px;
-    flex-direction: column;
+    display: flex;
+    font-size: 18px;
+    flex-direction: row;       /* put text on left, icons on right */
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;                 /* spacing between text and icons */
+    text-align: left;
+    margin-left: 40px;  
+    margin-top: 130px;        /* align text left */
+  }
+
+  .slide-content h2 {
+    font-size: 24px;
+    line-height: 1.4;
+    margin: 0;
+    text-align: left;
+  }
+
+  .slide-content h2 span {
+    display: block;            /* each line separate */
+    white-space: nowrap;       /* avoid breaking mid-word */
   }
   
   .icon-boxes-container {
@@ -875,8 +893,11 @@ section,
   }
   
   .hero .icon-box {
-    padding: 12px 8px;
-    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
   
   .hero .icon-box h3 {
@@ -2084,11 +2105,4 @@ section,
   font-size: 20px;
   margin-right: 8px;
   color: var(--accent-color);
-}
-
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
 }
