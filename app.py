@@ -85,10 +85,15 @@ def calculate_distance(lat1, lon1, lat2, lon2):
 
 
 # --------------------- Endpoint Routing --------------------------------
-
 @app.route('/')
+def landing():
+    return render_template('landing.html')
+
+
+
+@app.route('/home')
 def home():
-    return render_template('landing.html', user=session.get('user'),first_name=session.get('first_name'))
+    return render_template('home.html', user=session.get('user'),first_name=session.get('first_name'))
 
 @app.route('/file_complaint')
 @login_required
