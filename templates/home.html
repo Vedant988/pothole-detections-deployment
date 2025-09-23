@@ -28,687 +28,133 @@
 
   
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
-  
-  <!-- AOS Animation Library -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            'ubuntu': ['Ubuntu', 'sans-serif'],
-            'gothic': ['Special Gothic Expanded One', 'sans-serif'],
-          },
-          colors: {
-            'primary': '#f39c12',
-            'secondary': '#2c3e50',
-          }
-        }
-      }
-    }
-  </script>
-  
-  <style>
-    .hero-bg {
-      background-image: url('https://images.deccanherald.com/deccanherald%2Fimport%2Fsites%2Fdh%2Ffiles%2Farticleimages%2F2022%2F08%2F22%2Fpothole-1138292-1661174905.jpg?auto=format%2Ccompress&fmt=webp&fit=max&format=webp&q=70&w=400&dpr=2');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-    
-    .icon-box {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-    }
-    
-    .icon-box:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-5px);
-    }
-    
-    .mobile-nav {
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-    }
-    
-    .mobile-nav.active {
-      transform: translateX(0);
-    }
-    
-    @media (max-width: 768px) {
-      .hero-bg {
-        background-attachment: scroll;
-      }
-    }
-  </style>
+  <link href="static/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/header.css">
 </head>
 
-<body class="font-ubuntu bg-gray-900 text-white">
+<body class="index-page">
 
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-sm border-b border-gray-800">
-    <div class="container mx-auto px-4 lg:px-8">
-      <div class="flex items-center justify-between h-16 lg:h-20">
-        
-        <!-- Logo -->
-        <a href="#" class="text-xl lg:text-2xl font-bold text-white">
-          fix<span class="text-primary">myroad</span>™
-        </a>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-        <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center space-x-8">
-          <a href="#hero" class="text-primary border-b-2 border-primary pb-1">Home</a>
-          <a href="#about" class="hover:text-primary transition-colors">About Us</a>
-          <a href="#portfolio" class="hover:text-primary transition-colors">Projects</a>
-          <a href="#contact" class="hover:text-primary transition-colors">Contact Us</a>
-        </nav>
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+       
+          <a href="#" class="logo">fix<span>myroad</span>™</a>
+        <span>&nbsp;&nbsp;</span>
+      </a>
 
-        <!-- Desktop Auth Buttons -->
-        <div class="hidden lg:flex items-center space-x-4">
-          <!-- For logged in users -->
-          <div class="hidden user-authenticated">
-            <a href="{{ url_for('your_complaint_status') }}" class="bg-primary hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors" title="Profile">
-              <i class="bi bi-person"></i>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active"> Home&nbsp;&nbsp;&nbsp;&nbsp;<br></a></li>
+          <li><a href="#about">About Us&nbsp;&nbsp;</a></li>
+          
+          <li><a href="#portfolio">Projects &nbsp;&nbsp;&nbsp;&nbsp; </a></li>
+          
+          
+          <li><a href="#contact"> Contact Us &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      {% if user %}
+        <div class="button-group">
+            <a class="btn-getstarted login-icon" href="{{ url_for('your_complaint_status') }}" title="Profile">
+                <i class="bi bi-person"></i>
             </a>
-            <a href="{{ url_for('logout') }}" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg ml-2 transition-colors" title="Logout">
-              <i class="bi bi-box-arrow-right"></i>
+            <a class="btn-getstarted login-icon" href="{{ url_for('logout') }}" title="Logout">
+                <i class="bi bi-box-arrow-right"></i>
             </a>
-          </div>
-          <!-- For guest users -->
-          <div class="guest-auth flex space-x-3">
-            <a href="{{ url_for('register') }}" class="bg-primary hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition-colors">Register</a>
-            <a href="{{ url_for('login') }}" class="border border-primary text-primary hover:bg-primary hover:text-white px-6 py-2 rounded-lg transition-colors">Login</a>
-          </div>
         </div>
-
-        <!-- Mobile Menu Button -->
-        <button class="lg:hidden text-white text-xl" id="mobile-menu-btn">
-          <i class="bi bi-list"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav lg:hidden fixed top-16 right-0 w-64 h-screen bg-gray-900 shadow-lg z-40" id="mobile-nav">
-      <div class="p-6">
-        <nav class="flex flex-col space-y-4 mb-8">
-          <a href="#hero" class="text-primary border-l-2 border-primary pl-4">Home</a>
-          <a href="#about" class="hover:text-primary transition-colors pl-4">About Us</a>
-          <a href="#portfolio" class="hover:text-primary transition-colors pl-4">Projects</a>
-          <a href="#contact" class="hover:text-primary transition-colors pl-4">Contact Us</a>
-        </nav>
-        
-        <!-- Mobile Auth Buttons -->
-        <div class="space-y-3">
-          <div class="hidden user-authenticated">
-            <a href="{{ url_for('your_complaint_status') }}" class="block bg-primary hover:bg-orange-600 text-white px-4 py-3 rounded-lg text-center transition-colors">
-              <i class="bi bi-person mr-2"></i>Profile
-            </a>
-            <a href="{{ url_for('logout') }}" class="block bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg text-center mt-2 transition-colors">
-              <i class="bi bi-box-arrow-right mr-2"></i>Logout
-            </a>
-          </div>
-          <div class="guest-auth space-y-2">
-            <a href="{{ url_for('register') }}" class="block bg-primary hover:bg-orange-600 text-white px-4 py-3 rounded-lg text-center transition-colors">Register</a>
-            <a href="{{ url_for('login') }}" class="block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-3 rounded-lg text-center transition-colors">Login</a>
-          </div>
+    {% else %}
+        <div class="button-group">
+            <a class="btn-getstarted" href="{{ url_for('register') }}">Register</a>
+            <a class="btn-getstarted" href="{{ url_for('login') }}">Login</a>
         </div>
-      </div>
-    </div>
+        
+        <!-- Text Animation Below Register/Login Buttons -->
+       
+    {% endif %}
+  </div>
+    
   </header>
+  <main class="main">
 
-  <!-- Main Content -->
-  <main>
     <!-- Hero Section -->
-    <section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center">
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black/50"></div>
-      
-      <!-- Hero Content -->
-      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-wide mb-12 text-primary" data-aos="fade-up" data-aos-delay="100">
-          <span class="block sm:inline">See it,&nbsp;</span>
-          <span class="block sm:inline">Snap it,&nbsp;</span>
-          <span class="block sm:inline">Solve it</span>
-        </h1>
+    <section id="hero" class="hero section dark-background">
+      <div class="slider-container">
       </div>
+      
+        <!-- Slide 2 -->
+        <div class="slide" 
+     style="background-image: url('https://images.deccanherald.com/deccanherald%2Fimport%2Fsites%2Fdh%2Ffiles%2Farticleimages%2F2022%2F08%2F22%2Fpothole-1138292-1661174905.jpg?auto=format%2Ccompress&fmt=webp&fit=max&format=webp&q=70&w=400&dpr=2');">
+  <div class="slide-content flex items-center justify-center h-full bg-black/40 px-4">
+    <div class="row justify-content-center text-center font-bold 
+           text-2xl sm:text-3xl md:text-5xl lg:text-6xl 
+           leading-tight tracking-wide" 
+           data-aos="fade-up" data-aos-delay="100">
+      <h2>
+        <span>See it,&nbsp;</span>
+        <span>Snap it,&nbsp;</span>
+        <span class="break">Solve it</span>
+      </h2>
+    </div>
+  </div>
+</div>
 
-      <!-- Icon Boxes - Positioned at bottom -->
-      <div class="absolute bottom-8 left-0 right-0 z-10">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            
-            <!-- File Complaint -->
-            <div data-aos="fade-up" data-aos-delay="300">
-              <a href="{{ url_for('file_complaint') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-pencil-square text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">File Complaint</h3>
-                </div>
-              </a>
-            </div>
 
-            <!-- View on Map -->
-            <div data-aos="fade-up" data-aos-delay="400">
-              <a href="{{ url_for('view_on_map') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-map text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">View on Map</h3>
-                </div>
-              </a>
-            </div>
+      
+        <!-- Icon Boxes Container - Positioned at bottom of screen -->
+<div class="icon-boxes-container">
+  <div class="container">
+    <div class="row gy-4 justify-content-center " data-aos="fade-up" data-aos-delay="200">
 
-            <!-- Community -->
-            <div data-aos="fade-up" data-aos-delay="500">
-              <a href="{{ url_for('view_complaints') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-people-fill text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Community</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Complaint Status -->
-            <div data-aos="fade-up" data-aos-delay="600">
-              <a href="{{ url_for('your_complaint_status') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-check2-circle text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Complaint Status</h3>
-                </div>
-              </a>
-            </div>
-
-          </div>
+      <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <a href="{{ url_for('file_complaint') }}">
+        <div class="icon-box">
+          <i class="bi bi-pencil-square"></i>
+          <h3>File Complaint</h3>
         </div>
-      </div>
-    </section>
-
-    <!-- Rest of your website content would go here -->
-  </main>
-
-  <!-- Main Content -->
-  <main>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center">
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black/50"></div>
-      
-      <!-- Hero Content -->
-      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-wide mb-12 text-primary" data-aos="fade-up" data-aos-delay="100">
-          <span class="block sm:inline">See it,&nbsp;</span>
-          <span class="block sm:inline">Snap it,&nbsp;</span>
-          <span class="block sm:inline">Solve it</span>
-        </h1>
+        </a>
       </div>
 
-      <!-- Icon Boxes - Positioned at bottom -->
-      <div class="absolute bottom-8 left-0 right-0 z-10">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            
-            <!-- File Complaint -->
-            <div data-aos="fade-up" data-aos-delay="300">
-              <a href="{{ url_for('file_complaint') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-pencil-square text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">File Complaint</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- View on Map -->
-            <div data-aos="fade-up" data-aos-delay="400">
-              <a href="{{ url_for('view_on_map') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-map text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">View on Map</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Community -->
-            <div data-aos="fade-up" data-aos-delay="500">
-              <a href="{{ url_for('view_complaints') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-people-fill text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Community</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Complaint Status -->
-            <div data-aos="fade-up" data-aos-delay="600">
-              <a href="{{ url_for('your_complaint_status') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-check2-circle text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Complaint Status</h3>
-                </div>
-              </a>
-            </div>
-
-          </div>
+      <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <a href="{{ url_for('view_on_map') }}">
+        <div class="icon-box">
+          <i class="bi bi-map"></i>
+          <h3>View on Map</h3>
         </div>
-      </div>
-    </section>
-
-    <!-- Rest of your website content would go here -->
-  </main>
-  <!-- Main Content -->
-  <main>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center">
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black/50"></div>
-      
-      <!-- Hero Content -->
-      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-wide mb-12 text-primary" data-aos="fade-up" data-aos-delay="100">
-          <span class="block sm:inline">See it,&nbsp;</span>
-          <span class="block sm:inline">Snap it,&nbsp;</span>
-          <span class="block sm:inline">Solve it</span>
-        </h1>
+        </a>
       </div>
 
-      <!-- Icon Boxes - Positioned at bottom -->
-      <div class="absolute bottom-8 left-0 right-0 z-10">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            
-            <!-- File Complaint -->
-            <div data-aos="fade-up" data-aos-delay="300">
-              <a href="{{ url_for('file_complaint') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-pencil-square text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">File Complaint</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- View on Map -->
-            <div data-aos="fade-up" data-aos-delay="400">
-              <a href="{{ url_for('view_on_map') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-map text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">View on Map</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Community -->
-            <div data-aos="fade-up" data-aos-delay="500">
-              <a href="{{ url_for('view_complaints') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-people-fill text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Community</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Complaint Status -->
-            <div data-aos="fade-up" data-aos-delay="600">
-              <a href="{{ url_for('your_complaint_status') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-check2-circle text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Complaint Status</h3>
-                </div>
-              </a>
-            </div>
-
-          </div>
+      <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="500">
+        <a href="{{ url_for('view_complaints') }}">
+        <div class="icon-box">
+          <i class="bi bi-people-fill"></i>
+          <h3>Community</h3>
         </div>
-      </div>
-    </section>
-
-    <!-- Rest of your website content would go here -->
-  </main>
-  <!-- Main Content -->
-  <main>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center">
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black/50"></div>
-      
-      <!-- Hero Content -->
-      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-wide mb-12 text-primary" data-aos="fade-up" data-aos-delay="100">
-          <span class="block sm:inline">See it,&nbsp;</span>
-          <span class="block sm:inline">Snap it,&nbsp;</span>
-          <span class="block sm:inline">Solve it</span>
-        </h1>
+        </a>
       </div>
 
-      <!-- Icon Boxes - Positioned at bottom -->
-      <div class="absolute bottom-8 left-0 right-0 z-10">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            
-            <!-- File Complaint -->
-            <div data-aos="fade-up" data-aos-delay="300">
-              <a href="{{ url_for('file_complaint') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-pencil-square text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">File Complaint</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- View on Map -->
-            <div data-aos="fade-up" data-aos-delay="400">
-              <a href="{{ url_for('view_on_map') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-map text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">View on Map</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Community -->
-            <div data-aos="fade-up" data-aos-delay="500">
-              <a href="{{ url_for('view_complaints') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-people-fill text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Community</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Complaint Status -->
-            <div data-aos="fade-up" data-aos-delay="600">
-              <a href="{{ url_for('your_complaint_status') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-check2-circle text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Complaint Status</h3>
-                </div>
-              </a>
-            </div>
-
-          </div>
+      <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="600">
+        <a href="{{ url_for('your_complaint_status') }}">
+        <div class="icon-box">
+          <i class="bi bi-check2-circle"></i>
+          <h3>Complaint Status</h3>
         </div>
-      </div>
-    </section>
-
-    <!-- Rest of your website content would go here -->
-  </main>
-  <!-- Main Content -->
-  <main>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center">
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black/50"></div>
-      
-      <!-- Hero Content -->
-      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-wide mb-12 text-primary" data-aos="fade-up" data-aos-delay="100">
-          <span class="block sm:inline">See it,&nbsp;</span>
-          <span class="block sm:inline">Snap it,&nbsp;</span>
-          <span class="block sm:inline">Solve it</span>
-        </h1>
+        </a>
       </div>
 
-      <!-- Icon Boxes - Positioned at bottom -->
-      <div class="absolute bottom-8 left-0 right-0 z-10">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            
-            <!-- File Complaint -->
-            <div data-aos="fade-up" data-aos-delay="300">
-              <a href="{{ url_for('file_complaint') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-pencil-square text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">File Complaint</h3>
-                </div>
-              </a>
-            </div>
+    </div>
+  </div>
+</div>
 
-            <!-- View on Map -->
-            <div data-aos="fade-up" data-aos-delay="400">
-              <a href="{{ url_for('view_on_map') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-map text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">View on Map</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Community -->
-            <div data-aos="fade-up" data-aos-delay="500">
-              <a href="{{ url_for('view_complaints') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-people-fill text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Community</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Complaint Status -->
-            <div data-aos="fade-up" data-aos-delay="600">
-              <a href="{{ url_for('your_complaint_status') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-check2-circle text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Complaint Status</h3>
-                </div>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Rest of your website content would go here -->
-  </main>
-  <!-- Main Content -->
-  <main>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center">
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black/50"></div>
       
-      <!-- Hero Content -->
-      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-wide mb-12 text-primary" data-aos="fade-up" data-aos-delay="100">
-          <span class="block sm:inline">See it,&nbsp;</span>
-          <span class="block sm:inline">Snap it,&nbsp;</span>
-          <span class="block sm:inline">Solve it</span>
-        </h1>
-      </div>
+        
+    </section><!-- /Hero Section -->
 
-      <!-- Icon Boxes - Positioned at bottom -->
-      <div class="absolute bottom-8 left-0 right-0 z-10">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            
-            <!-- File Complaint -->
-            <div data-aos="fade-up" data-aos-delay="300">
-              <a href="{{ url_for('file_complaint') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-pencil-square text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">File Complaint</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- View on Map -->
-            <div data-aos="fade-up" data-aos-delay="400">
-              <a href="{{ url_for('view_on_map') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-map text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">View on Map</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Community -->
-            <div data-aos="fade-up" data-aos-delay="500">
-              <a href="{{ url_for('view_complaints') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-people-fill text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Community</h3>
-                </div>
-              </a>
-            </div>
-
-            <!-- Complaint Status -->
-            <div data-aos="fade-up" data-aos-delay="600">
-              <a href="{{ url_for('your_complaint_status') }}" class="block">
-                <div class="icon-box rounded-xl p-4 lg:p-6 text-center hover:scale-105 transition-transform">
-                  <i class="bi bi-check2-circle text-2xl lg:text-3xl text-primary mb-2 lg:mb-3"></i>
-                  <h3 class="text-sm lg:text-base font-semibold text-white">Complaint Status</h3>
-                </div>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Rest of your website content would go here -->
-  </main>
-  <!-- Scroll to Top Button -->
-  <a href="#" id="scroll-top" class="fixed bottom-6 right-6 bg-primary hover:bg-orange-600 text-white p-3 rounded-full shadow-lg transition-all z-40 opacity-0 invisible">
-    <i class="bi bi-arrow-up-short text-xl"></i>
-  </a>
-
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  
-  <script>
-    // Initialize AOS
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true
-    });
-
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileNav = document.getElementById('mobile-nav');
-    const menuIcon = mobileMenuBtn.querySelector('i');
-
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileNav.classList.toggle('active');
-      
-      if (mobileNav.classList.contains('active')) {
-        menuIcon.classList.remove('bi-list');
-        menuIcon.classList.add('bi-x');
-      } else {
-        menuIcon.classList.remove('bi-x');
-        menuIcon.classList.add('bi-list');
-      }
-    });
-
-    // Close mobile nav when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        mobileNav.classList.remove('active');
-        menuIcon.classList.remove('bi-x');
-        menuIcon.classList.add('bi-list');
-      }
-    });
-
-    // Scroll to top functionality
-    const scrollTopBtn = document.getElementById('scroll-top');
-    
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 100) {
-        scrollTopBtn.classList.remove('opacity-0', 'invisible');
-        scrollTopBtn.classList.add('opacity-100', 'visible');
-      } else {
-        scrollTopBtn.classList.add('opacity-0', 'invisible');
-        scrollTopBtn.classList.remove('opacity-100', 'visible');
-      }
-    });
-
-    scrollTopBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#') {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-            
-            // Close mobile nav if open
-            mobileNav.classList.remove('active');
-            menuIcon.classList.remove('bi-x');
-            menuIcon.classList.add('bi-list');
-          }
-        }
-      });
-    });
-
-    // Active navigation highlighting
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-    function highlightActiveSection() {
-      let current = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove('text-primary', 'border-b-2', 'border-primary', 'pb-1');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('text-primary', 'border-b-2', 'border-primary', 'pb-1');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', highlightActiveSection);
-
-    // User authentication state handling (placeholder)
-    // You can modify this based on your actual authentication logic
-    function handleAuthState() {
-      // Check if user is authenticated (you'll need to implement this logic)
-      const isAuthenticated = false; // Replace with actual auth check
-      
-      const userElements = document.querySelectorAll('.user-authenticated');
-      const guestElements = document.querySelectorAll('.guest-auth');
-      
-      if (isAuthenticated) {
-        userElements.forEach(el => el.classList.remove('hidden'));
-        guestElements.forEach(el => el.classList.add('hidden'));
-      } else {
-        userElements.forEach(el => el.classList.add('hidden'));
-        guestElements.forEach(el => el.classList.remove('hidden'));
-      }
-    }
-
-    // Initialize auth state
-    handleAuthState();
-  </script>
-    
   <!-- Rest of your website content would go here -->
-
+  <br><br><br>
  <!-- _____________________________________________________________________________________________________________________________ -->
-<!-- MISSION section -->
-<link rel="stylesheet" href="/static/css/2.css">
+
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
